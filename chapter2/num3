@@ -1,0 +1,12 @@
+travis@travis-folio13:~/Documents/dev/school/haskell/chapter2$ ghci num2.hs GHCi, version 7.4.1: http://www.haskell.org/ghc/  :? for help
+Loading package ghc-prim ... linking ... done.
+Loading package integer-gmp ... linking ... done.
+Loading package base ... linking ... done.
+[1 of 1] Compiling Main             ( num2.hs, interpreted )
+Ok, modules loaded: Main.
+*Main> lastButOne [1,2,3]
+2
+*Main> lastButOne [1,2]
+1
+*Main> lastButOne [1]
+*** Exception: Prelude.(!!): negative index
