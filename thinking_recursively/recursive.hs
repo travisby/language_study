@@ -62,6 +62,11 @@ merge loi1 loi2 = if null loi1 then loi2 else if null loi2 then loi1 else if (he
 -- My versions
 --------------------------------------------------------------------------------
 
+-- take_last :: Int -> [a] -> [a]
+take_last i xs
+	| i < (length xs) = reverse (take i (reverse xs))
+	| otherwise = error("Index > list length")
+
 
 -- 1. duple' n x 
 -- returns a list containing n copies of x
