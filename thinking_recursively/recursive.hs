@@ -115,8 +115,11 @@ list_set'' list@ (l:ist) index x
 
 -- 6. count_occurrences x xs
 -- returns the number of occurrences of x in xs
+-- We use a guard here so we can use the where keyword.  Until I learn how to curry this anyway.  Maybe a comprehension instead?
 count_occurrences' :: (Eq a) => a -> [a] -> Int
-count_occurrences' = count_occurrences
+count_occurrences' item xs
+	| otherwise = length (filter isEqual xs)
+	where isEqual x = item == x
 
 -- 7. filter_in
 -- returns the list of those elements in xs that satisfy the predicate f
