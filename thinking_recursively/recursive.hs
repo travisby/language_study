@@ -1,3 +1,6 @@
+--------------------------------------------------------------------------------
+-- Professor Johnson's versions
+--------------------------------------------------------------------------------
 -- 1. duple n x 
 -- returns a list containing n copies of x
 duple :: Int -> a -> [a]
@@ -55,6 +58,9 @@ up xs = if null xs then [] else (head xs) ++ up (tail xs)
 merge :: [Int] -> [Int] -> [Int]
 merge loi1 loi2 = if null loi1 then loi2 else if null loi2 then loi1 else if (head loi1) < (head loi2) then (head loi1):(merge (tail loi1) loi2) else (head loi2):(merge loi1 (tail loi2))
 
+--------------------------------------------------------------------------------
+-- My versions
+--------------------------------------------------------------------------------
 
 
 -- 1. duple' n x 
