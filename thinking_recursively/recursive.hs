@@ -128,13 +128,14 @@ filter_in' = filter_in
 
 -- 8. every f xs
 -- returns False if any element of xs fails to satisfy f, and returns True otherwise
-every' :: (a -> Bool) -> [a] -> Bool
-every' = every
+-- every' :: (a -> Bool) -> [a] -> Bool
+every' :: Eq a => (a -> Bool) -> [a] -> Bool
+every' func xs = xs == filter func xs
 
 -- 9. exists f xs
 -- returns True if any element of xs satisfies f, and returns False otherwise
 exists' :: (a -> Bool) -> [a] -> Bool
-exists' = exists
+exists' func xs = length (filter func xs) > 0
 
 -- 10. up xs
 -- removes a pair of parentheses from each top-level element of xs
