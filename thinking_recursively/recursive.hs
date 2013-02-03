@@ -124,7 +124,7 @@ count_occurrences' item xs
 -- 7. filter_in
 -- returns the list of those elements in xs that satisfy the predicate f
 filter_in' :: (a -> Bool) -> [a] -> [a]
-filter_in' = filter_in
+filter_in' func xs = filter func xs
 
 -- 8. every f xs
 -- returns False if any element of xs fails to satisfy f, and returns True otherwise
