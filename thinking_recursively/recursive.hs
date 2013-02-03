@@ -101,7 +101,10 @@ swapper' x y (e:es)
 -- 5. list_set
 -- returns a list like xs, except that the n-th element, using zero-based indexing, is x
 list_set' :: [a] -> Int -> a -> [a]
-list_set' = list_set
+list_set' list index x
+	| index < (length list) = (take index list) ++ [x] ++ take_last (index - 1) list
+	| otherwise = error("Index > list length")
+
 
 -- 6. count_occurrences x xs
 -- returns the number of occurrences of x in xs
