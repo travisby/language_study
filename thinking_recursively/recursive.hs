@@ -71,10 +71,11 @@ invert' :: [(a,b)] -> [(b,a)]
 invert' [] = []
 invert' ((a,b):xs) = (b, a) : invert' xs
 
--- 3. down xs
+-- 3. down' xs
 -- wraps brackets around each top-level element of xs
 down' :: [a] -> [[a]]
-down' = down
+down' [] = []
+down' (x:xs) = [x] : down' xs
 
 -- 4. swapper x y xs
 -- returns a list the same as xs, but with all occurrences of x replaced by y and all occurrences of y replaced by x
