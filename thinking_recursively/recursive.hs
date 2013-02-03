@@ -80,7 +80,12 @@ down' (x:xs) = [x] : down' xs
 -- 4. swapper x y xs
 -- returns a list the same as xs, but with all occurrences of x replaced by y and all occurrences of y replaced by x
 swapper' :: (Eq a) => a -> a -> [a] -> [a]
-swapper' = swapper
+swapper' x y [] = []
+swapper' x y (e:es)
+	| e == x = y : curr_swap 
+	| e == y = x : curr_swap
+	| otherwise = e : curr_swap
+	where curr_swap = swapper' x y es
 
 -- 5. list_set
 -- returns a list like xs, except that the n-th element, using zero-based indexing, is x
