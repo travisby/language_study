@@ -141,7 +141,13 @@ exists' func xs = length (filter func xs) > 0
 -- removes a pair of parentheses from each top-level element of xs
 -- the value of (up (down xs)) is equivalent to xs, but (down (up xs)) is not necessarily xs
 up' :: [[a]] -> [a]
-up' = up
+-- up' ([x]:xs) = x : up' xs
+-- up' = up
+-- down' (x:xs) = [x] : down' xs
+-- up' [] = []
+up' [] = []
+up' ([x]:xs) = x : up' xs
+
 
 -- 11. merge
 -- where loi1 and loi2 are lists of integers that are sorted in ascending order, 
