@@ -153,4 +153,9 @@ up' ([x]:xs) = x : up' xs
 -- where loi1 and loi2 are lists of integers that are sorted in ascending order, 
 -- returns a sorted list of all the integers in loi1 and loi2
 merge' :: [Int] -> [Int] -> [Int]
-merge' = merge
+merge' [] [] = []
+merge' [] ys = ys
+merge' xs [] = xs
+merge' xs ys
+	| (head xs < head ys) = head xs : (merge' (tail xs) ys)
+	| otherwise = head ys : (merge' xs (tail ys))
