@@ -91,7 +91,7 @@ down' (x:xs) = [x] : down' xs
 -- 4. swapper x y xs
 -- returns a list the same as xs, but with all occurrences of x replaced by y and all occurrences of y replaced by x
 swapper' :: (Eq a) => a -> a -> [a] -> [a]
-swapper' x y [] = []
+swapper' _ _ [] = []
 swapper' x y (e:es)
 	| e == x = y : curr_swap 
 	| e == y = x : curr_swap
