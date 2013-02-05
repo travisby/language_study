@@ -67,7 +67,6 @@ take_last i xs
 	| i < (length xs) = reverse (take i (reverse xs))
 	| otherwise = error("Index > list length")
 
-
 -- 1. duple' n x 
 -- returns a list containing n copies of x
 duple' :: Int -> a -> [a]
