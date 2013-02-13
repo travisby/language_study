@@ -1,4 +1,5 @@
 import System.Environment (getArgs)
+import Data.Char
 
 interactWith function inputFile outputFile = do
   input <- readFile inputFile
@@ -13,3 +14,14 @@ main = mainWith myFunction
 
         -- replace "id" with the name of our function below
         myFunction = id
+
+
+-- Using the command framework from the section called
+-- ¿A simple command line framework¿, write a program
+-- that converts the case  of its input.
+
+convertAllCases = map convert
+
+convert x
+    | isLower x = toUpper x
+    | otherwise = toLower x
