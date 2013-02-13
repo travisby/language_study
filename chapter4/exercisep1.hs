@@ -5,7 +5,7 @@
 -- So for this, we need to prepend to the list if true, and concatenate a [] if false.
 splitWith :: (a -> Bool) -> [a] -> [[a]]
 splitWith _ [] = [[]]
-splitWith func xs
-where
-    xs_first = takeWhile (func xs)
-    xs_last = dropWhile (func xs)
+splitWith func xs = xs_first : (splitWith func xs_last)
+    where
+        xs_first list = (takeWhile func list)
+        xs_last list = (dropWhile func list)
