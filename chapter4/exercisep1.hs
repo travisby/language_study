@@ -1,10 +1,11 @@
-import commandLine
 -- Write a function splitWith that acts similarly to words, but takes a
 -- predicate and a list of any type, and splits its input list on every
 -- element for which the predicate returns False
+
+-- So for this, we need to prepend to the list if true, and concatenate a [] if false.
 splitWith :: (a -> Bool) -> [a] -> [[a]]
-
-
--- Using the command framework from the section called
--- “A simple command line framework”, write a program
--- that prints the first word of each line of its input.
+splitWith _ [] = [[]]
+splitWith func xs
+where
+    xs_first = takeWhile (func xs)
+    xs_last = dropWhile (func xs)
