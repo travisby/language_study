@@ -6,4 +6,4 @@
 
 -- heads :: [[a]] -> [Int]
 -- heads xss = foldr ((:) . head) [] xss 
-heads xs = foldl (\ y ys -> y ++ [head ys]) [] xs
+heads = foldl (\ y ys -> y ++ [head ys]) []
