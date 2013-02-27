@@ -93,3 +93,9 @@ fill x doc
 	| x > len = fill x (doc `Concat` (text " "))
 	| otherwise = doc
 	where len = length (pretty 1 doc)
+
+-- Our pretty printer does not take nesting into account. Whenever we open
+-- parentheses, braces, or brackets, any lines that follow should be indented
+-- so that they are aligned with the opening character until a matching closing
+-- character is encountered. 
+-- nest :: Int -> Doc -> Doc
