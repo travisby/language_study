@@ -84,3 +84,12 @@ w `fits` _ | w < 0 = False
 w `fits` ""        = True
 w `fits` ('\n':_)  = True
 w `fits` (c:cs)    = (w - 1) `fits` cs
+
+-- It should add spaces to a document until it is the given number of columns
+-- wide. If it is already wider than this value, it should add no spaces.
+-- We use "pretty 1 doc".  Not sure what it does, but it will give us a string that we can then use to get the length of said doc :)
+fill :: Int -> Doc -> Doc
+fill x doc
+	| x > len = fill x (doc `Concat` (text " "))
+	| otherwise = doc
+	where len = length (pretty 1 doc)
