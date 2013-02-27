@@ -97,7 +97,7 @@ fill size doc = foldr fillInner Empty listOfLines
 		listOfLines = map Text (lines (compact doc))
 		fillInner myDoc string
 			| length (compact myDoc) >= size = string <> myDoc <> Line
-			| otherwise = fillInner (myDoc <> (Char ' ')) string
+			| otherwise = fillInner (myDoc <> Char ' ') string
 
 -- Our pretty printer does not take nesting into account. Whenever we open
 -- parentheses, braces, or brackets, any lines that follow should be indented
