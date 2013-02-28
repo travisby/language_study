@@ -92,8 +92,8 @@ fill x doc = ((foldr fillInner (Empty) listOfLines))
 	where
 		listOfLines = map Text (lines (pretty 1 doc))
 		fillInner myDoc string
-			| length (compact myDoc) >= x = ((string `Concat` myDoc) `Concat` Line)
-			| otherwise = fillInner (myDoc `Concat` (Text " ")) string
+			| length (compact myDoc) >= x = string <> myDoc <> Line
+			| otherwise = fillInner (myDoc <> (Char ' '))  string
 
 -- Our pretty printer does not take nesting into account. Whenever we open
 -- parentheses, braces, or brackets, any lines that follow should be indented
