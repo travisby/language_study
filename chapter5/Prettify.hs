@@ -87,13 +87,12 @@ w `fits` (c:cs)    = (w - 1) `fits` cs
 
 -- It should add spaces to a document until it is the given number of columns
 -- wide. If it is already wider than this value, it should add no spaces.
--- We use "pretty 1 doc".  Not sure what it does, but it will give us a string that we can then use to get the length of said doc :)
 fill :: Int -> Doc -> Doc
 fill x doc = ((foldr fillInner (Empty) listOfLines))
 	where
 		listOfLines = map Text (lines (pretty 1 doc))
 		fillInner myDoc string
-			| length (pretty 1 myDoc) >= x = ((string `Concat` myDoc) `Concat` Line)
+			| length (compact myDoc) >= x = ((string `Concat` myDoc) `Concat` Line)
 			| otherwise = fillInner (myDoc `Concat` (Text " ")) string
 
 -- Our pretty printer does not take nesting into account. Whenever we open
