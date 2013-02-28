@@ -89,10 +89,12 @@ w `fits` (c:cs)    = (w - 1) `fits` cs
 -- wide. If it is already wider than this value, it should add no spaces.
 -- We use "pretty 1 doc".  Not sure what it does, but it will give us a string that we can then use to get the length of said doc :)
 fill :: Int -> Doc -> Doc
-fill x doc
-	| x > len = fill x (doc `Concat` (text " "))
-	| otherwise = doc
-	where len = length (pretty 1 doc)
+fill x doc = (Text (foldr fillInner "" listOfLines))
+	where
+		listOfLines = lines (pretty 1 doc)
+		fillInner myLine string
+			| length myLine >= x = string ++ myLine ++ "\n"
+			| otherwise = fillInner (myLine ++ " ") string
 
 -- Our pretty printer does not take nesting into account. Whenever we open
 -- parentheses, braces, or brackets, any lines that follow should be indented
