@@ -88,11 +88,11 @@ w `fits` (c:cs)    = (w - 1) `fits` cs
 -- It should add spaces to a document until it is the given number of columns
 -- wide. If it is already wider than this value, it should add no spaces.
 fill :: Int -> Doc -> Doc
-fill x doc = foldr fillInner Empty listOfLines
+fill size doc = foldr fillInner Empty listOfLines
 	where
 		listOfLines = map Text (lines (pretty 1 doc))
 		fillInner myDoc string
-			| length (compact myDoc) >= x = string <> myDoc <> Line
+			| length (compact myDoc) >= size = string <> myDoc <> Line
 			| otherwise = fillInner (myDoc <> (Char ' ')) string
 
 -- Our pretty printer does not take nesting into account. Whenever we open
