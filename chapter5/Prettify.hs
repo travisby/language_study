@@ -87,6 +87,10 @@ w `fits` (c:cs)    = (w - 1) `fits` cs
 
 -- It should add spaces to a document until it is the given number of columns
 -- wide. If it is already wider than this value, it should add no spaces.
+
+-- What we do is we fold over a list of Documents with the function "fillInner"
+-- fillInner will Concatenate ' ' to a string until it is the correct size.
+-- when a Doc is the correct size, it will Concatenate with a Line
 fill :: Int -> Doc -> Doc
 fill size doc = foldr fillInner Empty listOfLines
 	where
