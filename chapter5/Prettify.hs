@@ -94,7 +94,7 @@ w `fits` (c:cs)    = (w - 1) `fits` cs
 fill :: Int -> Doc -> Doc
 fill size doc = foldr fillInner Empty listOfLines
 	where
-		listOfLines = map Text (lines (pretty 1 doc))
+		listOfLines = map Text (lines (compact doc))
 		fillInner myDoc string
 			| length (compact myDoc) >= size = string <> myDoc <> Line
 			| otherwise = fillInner (myDoc <> (Char ' ')) string
