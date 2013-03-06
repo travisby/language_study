@@ -103,4 +103,39 @@ fill size doc = foldr fillInner Empty listOfLines
 -- parentheses, braces, or brackets, any lines that follow should be indented
 -- so that they are aligned with the opening character until a matching closing
 -- character is encountered. 
--- nest :: Int -> Doc -> Doc
+-- 
+--data Doc = Empty
+--         | Char Char
+--         | Text String
+--         | Line
+--         | Concat Doc Doc
+--         | Union Doc Doc
+
+nest :: Int -> Doc -> Doc
+nest i (Char a `Concat` b)
+        | isOpenner a = Char a `Concat` nest (i+1) b
+        | isCloser a = Char a `Concat` nest (i-1) b
+        | otherwise = Char a `Concat` nest i b
+nest i (Line `Concat` b) = Line `Concat` Text (take i (cycle [space])) `Concat` b
+nest i (a `Concat` b) = nest i a `Concat` nest i b
+-- Empty, Union
+nest _ doc = doc
+
+space :: Char
+space = '\t'
+isOpenner :: Char -> Bool
+isOpenner '{' = True 
+isOpenner '(' = True 
+isOpenner _ = False
+
+isCloser :: Char -> Bool
+isCloser '}' = True 
+isCloser ')' = True 
+isCloser _ = False
+
+main :: IO()
+main = putStrLn $ pretty 2 $ nest 10 doc 
+
+-- doc = Text "Hello" <> Char '{' <> Line <> Text "World!" <> Char '}' <> Line <> Text "Bye"
+doc :: Doc
+doc = Concat (Text "Hello") (Concat (Char '{') (Concat Line (Concat (Text "World!") (Concat (Char '}') (Concat Line (Text "Bye"))))))
