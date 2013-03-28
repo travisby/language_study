@@ -7,19 +7,19 @@ ratnum _ 0 = error "Cannot divide by zero!"
 ratnum a b = RatNum a b
 
 instance Eq RatNum where
-    (==) first second = numerator first * denominator second == numerator second * denominator first
+    (==) (RatNum a b) (RatNum c d) = a * d == c * b
 
 
 instance Ord RatNum where
-    (<=) first second = (numerator first * denominator second) <= (numerator second * denominator first)
+    (<=) (RatNum a b) (RatNum c d) = (a * d) <= (c * b)
 
 
 instance Show RatNum where
-    show ratnum = show (numerator ratnum) ++ "/" ++ show (denominator ratnum)
+    show (RatNum a b) = show a ++ "/" ++ show b
 
 
 instance Num RatNum where
-    (+) first second = RatNum (numerator first * denominator second + numerator second * denominator first) (denominator first * denominator second)
+    (+) (RatNum a b) (RatNum c d) = RatNum (a * d + c * b) (b * d)
     (*) (RatNum a b) (RatNum c d) = RatNum (a * c) (b * d)
 
     negate (RatNum a b) = RatNum (-1 * a) b
